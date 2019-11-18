@@ -1,0 +1,77 @@
+.rowContainer {
+  display: flex;
+  flex-wrap: wrap;
+  transform: translateX(-50%);
+  left: 54%;
+  position: relative;
+}
+.rowContainer .dayItem {
+  width: 100rpx;
+  height: 100rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-right: 1px solid #EDEDED;
+  border-bottom: 1px solid #EDEDED;
+}
+.rowContainer .dayItem .innerActiveContaienr {
+  width: 50rpx;
+  height: 50rpx;
+  color: #333333;
+  border-radius: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 28rpx;
+}
+.rowContainer .dayItem .innerActiveContaienr.active {
+  background: #FB5E54;
+  color: #fff;
+}
+.rowContainer .dayItem .innerActiveContaienr.disabled {
+  color: #B3B3B3;
+  background: #fff;
+}
+.rowContainer .dayItem.dayItem0,
+.rowContainer .dayItem.dayItem7,
+.rowContainer .dayItem.dayItem14,
+.rowContainer .dayItem.dayItem21,
+.rowContainer .dayItem.dayItem28,
+.rowContainer .dayItem.dayItem35 {
+  border-left: 1px solid #EDEDED;
+}
+.rowContainer .dayItem.dayItem0,
+.rowContainer .dayItem.dayItem1,
+.rowContainer .dayItem.dayItem2,
+.rowContainer .dayItem.dayItem3,
+.rowContainer .dayItem.dayItem4,
+.rowContainer .dayItem.dayItem5,
+.rowContainer .dayItem.dayItem6 {
+  border-top: 1px solid #EDEDED;
+}
+.weeksRow {
+  display: flex;
+  align-items: center;
+  left: 54%;
+  position: relative;
+  transform: translateX(-50%);
+}
+.weeksRow .weekItem {
+  width: 100rpx;
+  height: 50rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.datePickRow {
+  display: flex;
+  align-items: center;
+  font-size: 28rpx;
+  justify-content: center;
+  margin-top: 40rpx;
+  margin-bottom: 40rpx;
+}
+.datePickRow .text {
+  padding-left: 20rpx;
+  padding-right: 20rpx;
+}

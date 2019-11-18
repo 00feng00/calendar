@@ -1,0 +1,54 @@
+<view
+  class="componetContainer"
+  hover-class="none"
+  hover-stop-propagation="false"
+>
+  <view class="datePickRow" hover-class="none" hover-stop-propagation="false">
+    <m-icon icon="icon-left" bindtap="bindDown"></m-icon>
+    <view class="text" hover-class="none" hover-stop-propagation="false">
+      {{ selectDateShow }}
+    </view>
+    <m-icon icon="icon-right" bindtap="bindUp"></m-icon>
+  </view>
+  <view class="weeksRow" hover-class="none" hover-stop-propagation="false">
+    <view class="weekItem" hover-class="none" hover-stop-propagation="false"
+      >日
+    </view>
+    <view class="weekItem" hover-class="none" hover-stop-propagation="false"
+      >一
+    </view>
+    <view class="weekItem" hover-class="none" hover-stop-propagation="false"
+      >二
+    </view>
+    <view class="weekItem" hover-class="none" hover-stop-propagation="false"
+      >三
+    </view>
+    <view class="weekItem" hover-class="none" hover-stop-propagation="false"
+      >四
+    </view>
+    <view class="weekItem" hover-class="none" hover-stop-propagation="false"
+      >五
+    </view>
+    <view class="weekItem" hover-class="none" hover-stop-propagation="false"
+      >六
+    </view>
+  </view>
+  <view class="rowContainer" hover-class="none" hover-stop-propagation="false">
+    <view
+      class="dayItem dayItem{{ dayIndex }}"
+      hover-class="none"
+      wx:for="{{ days }}"
+      wx:key="d-{{ item }}"
+      wx:for-index="dayIndex"
+      hover-stop-propagation="false"
+    >
+      <view
+        class="innerActiveContaienr {{ item.active ? 'active' : 'no-active' }}    {{ item.disabled ? 'disabled' : '' }}"
+        hover-class="none"
+        hover-stop-propagation="false"
+      >
+        {{ item.number }}
+      </view>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,92 @@
+@import "../../styles/color.less";
+@import "../../styles//fontsize.less";
+
+.rowContainer {
+  display  : flex;
+  flex-wrap: wrap;
+  transform: translateX(-50%);
+  left     : 54%;
+  position : relative;
+
+
+  .dayItem {
+    width          : 100rpx;
+    height         : 100rpx;
+    display        : flex;
+    justify-content: center;
+    align-items    : center;
+    border-right   : 1px solid @divideColor;
+    border-bottom  : 1px solid @divideColor;
+
+    .innerActiveContaienr {
+      width          : 50rpx;
+      height         : 50rpx;
+      color          : @blackColor;
+      border-radius  : 100%;
+      display        : flex;
+      justify-content: center;
+      align-items    : center;
+      font-size      : @fontsize;
+
+      &.active {
+        background: @priceColor;
+        color     : #fff;
+      }
+
+      &.disabled {
+        color     : @descColor;
+        background: #fff;
+      }
+    }
+
+    &.dayItem0,
+    &.dayItem7,
+    &.dayItem14,
+    &.dayItem21,
+    &.dayItem28,
+    &.dayItem35 {
+      border-left: 1px solid @divideColor;
+    }
+
+    &.dayItem0,
+    &.dayItem1,
+    &.dayItem2,
+    &.dayItem3,
+    &.dayItem4,
+    &.dayItem5,
+    &.dayItem6 {
+      border-top: 1px solid @divideColor;
+    }
+  }
+}
+
+.weeksRow {
+  display    : flex;
+  align-items: center;
+  left       : 54%;
+  position   : relative;
+  transform  : translateX(-50%);
+
+  .weekItem {
+
+    width          : 100rpx;
+    height         : 50rpx;
+    display        : flex;
+    justify-content: center;
+    align-items    : center;
+  }
+}
+
+.datePickRow {
+  display        : flex;
+  align-items    : center;
+  font-size      : @fontsize;
+  justify-content: center;
+  margin-top     : 40rpx;
+  margin-bottom  : 40rpx;
+
+  .text {
+    padding-left : 20rpx;
+    padding-right: 20rpx;
+  }
+}
