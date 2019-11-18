@@ -1,5 +1,6 @@
 // 0 1 2 3 4 5 6
 // 日
+// 获取这个月的天数 比如30 31 28
 function getDaysInOneMonth(
   year = new Date().getFullYear(),
   month = new Date().getMonth()
@@ -34,7 +35,7 @@ function getCurrentMonthLastWeek(
 ) {
   return new Date(year, month, getDaysInOneMonth(year, month)).getDay()
 }
-
+// 生成这个月的天数
 function daysDateArray(
   year = new Date().getFullYear(),
   month = new Date().getMonth()
@@ -54,6 +55,7 @@ Component({
   },
   properties: {},
   methods: {
+    // 个位数显示 2位数
     fixed2wei(number) {
       if (number < 10) {
         return `0${number}`
@@ -100,14 +102,37 @@ Component({
         () => this.caculateDay(date.getFullYear(), date.getMonth())
       )
     },
-    diffNumber(number1, number2) {
-      return Math.abs(number1 - number2)
+    // pick 时间选择事件
+    pickDateDayEvent(e) {
+      var date = new Date(
+        e.detail.value.split('-')[0],
+        e.detail.value.split('-')[1] - 1,
+        e.detail.value.split('-')[2]
+      )
+      var year = date.getFullYear()
+      var month = date.getMonth()
+      this.setData(
+        {
+          selectDay: date.getTime(),
+          selectDateShow: `${year}-${this.fixed2wei(month + 1)}`
+        },
+        () => this.caculateDay(year, month)
+      )
     },
+    /* 
+    输入年月 选择界面
+    求出上个月要显示几天 beginArray
+    下个月要显示几天  nextArray
+    这个月显示几天 this.data.days
+    year 默认当前年
+    month 默认当前月
+    */
+
     caculateDay(
       year = new Date().getFullYear(),
       month = new Date().getMonth()
     ) {
-      // 在组件实例进入页面节点树时执行
+      // 得出这个月要显示几天
       this.data.days = daysDateArray(year, month).map(item => {
         var result = this.data.activeDays.filter(item1 => item1 == item.number)
         if (result && result.length >= 1) {
@@ -116,22 +141,25 @@ Component({
         }
         return item
       })
-      var startDay = getCurrentMonthFirstWeek(year, month)
-      var lastDay = getCurrentMonthLastWeek(year, month)
+      // var startDay = getCurrentMonthFirstWeek(year, month)
+      // var lastDay = getCurrentMonthLastWeek(year, month)
       var startWeek = getCurrentMonthFirstWeek(year, month)
       // console.log('startDay 星期几', startDay)
       // console.log('lastDay 星期几', lastDay)
       var lasetMonthDay = getCurrentMonthLastDay(year, month - 1)
-      var lasetMonthWeek = getCurrentMonthLastWeek(year, month - 1)
+      // var lasetMonthWeek = getCurrentMonthLastWeek(year, month - 1)
       // console.log('lasetMonthDay 星期几', lasetMonthDay)
-
       // console.log(' lasetMonthDay, startWeek,', lasetMonthDay, startWeek)
-
+      /**
+       * 求上个月要显示几天
+       * startWeek 这个月最开始是星期几
+       * lasetMonthDay 上个月最后一天的日期
+       */
       var beginArray = []
       for (let i = 0; i < startWeek; i++) {
         beginArray.push({
           number: lasetMonthDay - startWeek + 1 + i,
-          disabled: true
+          disabled: true //disabled=>true 界面灰色
         })
       }
 
@@ -143,7 +171,12 @@ Component({
       var nextMonthFirstDay = getCurrentMonthFirstDay(year, month + 1)
       // console.log('currentMonthLastWeek', currentMonthLastWeek)
       // console.log('nextMonthFirstDay', nextMonthFirstDay)
-
+/* 
+计算下个月要显示多少
+currentMonthLastWeek 这个月最后一天是星期几
+6是星期6的意思
+nextMonthFirstDay  下个月第一天的日期
+*/
       var nextArray = []
       for (let i = 0; i < 6 - currentMonthLastWeek; i++) {
         nextArray.push({ number: i + nextMonthFirstDay, disabled: true })
